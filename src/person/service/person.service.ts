@@ -1,30 +1,43 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { PersonI } from '../interface/person.interface';
-import { PersonE } from '../domain/person.entity';
+import { Person } from '../domain/person.entity';
+import { PersonResponse } from '../domain/person-response.dto';
 
 @Injectable()
 export class PersonService {
 
    constructor(
-      @InjectRepository(PersonE)
-      private readonly personRepository: Repository<PersonE>) { }
+      @InjectRepository(Person)
+      private readonly personRepository: Repository<Person>) { }
 
-   async getAll(): Promise<PersonE[]> {
+   async getAll(): Promise<Person[]> {
       return await this.personRepository.find();
     }
 
-    getById(id: number) {
-       return 'byId Person service';
+    getById(id: number): string {
+      return 'by Id';
     }
 
-    create(person: PersonI) {
-       return 'create Person service';
+    async create(person: PersonResponse) {
+       const pe = {
+         code: 'P-001',
+         fullName: person.fullname,
+         identityCard: person.identityCard,
+         nit: person.nit,
+         email: person.email,
+         mobile: person.mobile,
+         address: person.address,
+         createdAt: new Date(),
+         state: 1,
+       }
+       const p = this.personRepository.create(pe);
+       await this.personRepository.save(p);
+       return p;
     }
 
-    update(id: number, person: PersonI) {
+    update(id: number, person: PersonResponse) {
        return 'update Person service';
     }
 

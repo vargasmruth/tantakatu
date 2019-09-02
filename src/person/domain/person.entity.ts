@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class PersonE {
+export class Person {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -13,7 +13,7 @@ export class PersonE {
     fullName: string;
 
     @Column({ length: 10 })
-    identity_card: string;
+    identityCard: string;
 
     @Column({ length: 12 })
     nit: string;
@@ -28,7 +28,7 @@ export class PersonE {
     address: string;
 
     @Column('date')
-    created_at: Date;
+    createdAt: Date;
 
     @Column()
     state: number;
