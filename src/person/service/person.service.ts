@@ -1,12 +1,19 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { PersonI } from '../interface/person.interface';
+import { PersonE } from '../domain/person.entity';
 
 @Injectable()
 export class PersonService {
 
-    getAll() {
-       return 'all Persons service';
+   constructor(
+      @InjectRepository(PersonE)
+      private readonly personRepository: Repository<PersonE>) { }
+
+   async getAll(): Promise<PersonE[]> {
+      return await this.personRepository.find();
     }
 
     getById(id: number) {

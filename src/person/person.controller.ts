@@ -2,7 +2,8 @@ import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common'
 
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 
-import { Person } from './person.dto';
+import { Person } from './domain/person.dto';
+import { PersonE } from './domain/person.entity';
 import { PersonService } from './service/person.service';
 
 @ApiUseTags('persons')
@@ -12,7 +13,7 @@ export class PersonController {
   constructor(private personService: PersonService) {}
 
   @Get()
-  getAll(): string {
+  getAll(): Promise<PersonE[]> {
     return this.personService.getAll();
   }
 
