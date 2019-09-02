@@ -37,5 +37,5 @@ $ npm run test:cov
 ## Stay in touch
 
 - Author - [Ruth Vargas](https://github.com/vargasmruth/)
-- Twitter - [@nestframework](https://twitter.com/vargasmruth)
+- Twitter - [@vargasmruth](https://twitter.com/vargasmruth)
 
