@@ -1,4 +1,4 @@
-# tantakatu-service
+# tantakatu-api
 
 Tantakatu is a service (offered as an API) to implement buying and selling platforms.
 
@@ -13,7 +13,10 @@ $ npm install
 ```bash
 # development
 $ npm run start
+```
+While the application is running, open your browser and navigate to [Swagger](http://localhost:3000/api) 
 
+```bash
 # watch mode
 $ npm run start:dev
 
