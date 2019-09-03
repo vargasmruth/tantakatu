@@ -10,7 +10,7 @@ export class Person {
     code: string;
 
     @Column({ length: 60 })
-    fullName: string;
+    fullname: string;
 
     @Column({ length: 10 })
     identityCard: string;

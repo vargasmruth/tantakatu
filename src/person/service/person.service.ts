@@ -2,8 +2,8 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Person } from '../domain/person.entity';
-import { PersonResponse } from '../domain/person-response.dto';
+import { Person } from '../entity/person.entity';
+import { PersonResponse } from '../dto/person-response.dto';
 
 @Injectable()
 export class PersonService {
@@ -16,8 +16,8 @@ export class PersonService {
       return await this.personRepository.find();
     }
 
-    getById(id: number): string {
-      return 'by Id';
+   async getById(id: number) {
+      return await this.personRepository.findOne({ where: { id }});
     }
 
     async create(person: PersonResponse) {
@@ -31,17 +31,19 @@ export class PersonService {
          address: person.address,
          createdAt: new Date(),
          state: 1,
-       }
+       };
        const p = this.personRepository.create(pe);
        await this.personRepository.save(p);
        return p;
     }
 
-    update(id: number, person: PersonResponse) {
-       return 'update Person service';
+   async update(id: number, person: PersonResponse) {
+       await this.personRepository.update({id}, person);
+       return await this.personRepository.findOne({id});
     }
 
-    delete(id: number) {
-       return 'delete Person service';
+   async delete(id: number) {
+       await this.personRepository.delete({id});
+       return { deleted: true };
     }
 }

@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 
-import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
+import { ApiUseTags } from '@nestjs/swagger';
 
-import { PersonResponse } from './domain/person-response.dto';
-import { Person } from './domain/person.entity';
+import { PersonResponse } from './dto/person-response.dto';
+import { Person } from './entity/person.entity';
 import { PersonService } from './service/person.service';
 
 @ApiUseTags('persons')
@@ -18,7 +18,7 @@ export class PersonController {
   }
 
   @Get(':id')
-  getById(@Param('id') id: number): string {
+  getById(@Param('id') id: number): Promise<Person> {
     return this.personService.getById(id);
   }
 
@@ -28,13 +28,12 @@ export class PersonController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() person: Person): string {
-    /* return this.personService.update(id, person); */
-    return '';
+  update(@Param('id') id: number, @Body() person: PersonResponse): Promise<Person> {
+    return this.personService.update(id, person );
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): string {
+  delete(@Param('id') id: number): Promise<any> {
     return this.personService.delete(id);
   }
 
