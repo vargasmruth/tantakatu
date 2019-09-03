@@ -8,6 +8,7 @@ import { CategoryModule } from './category/category.module';
 import { AccountingPlanModule } from './accounting-plan/accounting-plan.module';
 import { ItemModule } from './item/item.module';
 import { SaleModule } from './sale/sale.module';
+import { SaleDetailModule } from './sale-detail/sale-detail.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
@@ -18,6 +19,7 @@ import { SaleModule } from './sale/sale.module';
     AccountingPlanModule,
     ItemModule,
     SaleModule,
+    SaleDetailModule,
    ],
 })
 export class AppModule {
