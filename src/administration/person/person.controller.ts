@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 
-import { ApiUseTags } from '@nestjs/swagger';
+import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 
 import { PersonResponse } from './dto/person-response.dto';
 import { Person } from './entity/person.entity';
